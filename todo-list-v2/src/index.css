@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 30px auto;
+}
+
+.add-input{
+    display: flex;
+    gap: 5px;
+}
+
+.add-input input{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.add-input button{
+    width: 50px;
+    border: none;
+    background-color: black;
+    color: aliceblue;
+}
+
+.list{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto auto;
+    gap: 15px;
+}

@@ -15,9 +15,8 @@ const App = () =>{
         setlist(newList)
     }
     return(
-        <>
-        <div>
-
+        <div className="container">
+        <div className="add-input">
         <input type="text"
         onChange={(e)=>setInput(e.target.value)}
         value={input}
@@ -26,13 +25,13 @@ const App = () =>{
         <button onClick={handelInput}>Add</button>
         </div>
 
-        <ul>
+        <ul className="list">
             {lists.map((list,index) => (
                 <li key={index}>{list}
                 <button onClick={()=>handeldel(index)}>delete</button></li>
             ))}
         </ul>
-        </>
+        </div>
     )
 }
 
