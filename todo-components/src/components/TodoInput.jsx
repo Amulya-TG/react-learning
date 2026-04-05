@@ -1,9 +1,9 @@
-const TodoInput =({input,setinput,handelAdd}) =>{
+const TodoInput =({input,setInput,handelAdd}) =>{
     return(
         <>
         <input type="text"
         value={input}
-        onChange={(e)=>setinput(e.target.value)}
+        onChange={(e)=>setInput(e.target.value)}
         placeholder="Enter Name" />
 
         <button type="submit" onClick={handelAdd}>Submit</button>
