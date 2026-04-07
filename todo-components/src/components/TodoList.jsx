@@ -1,10 +1,9 @@
-function TodoList({tasks,handelDel}){
+const TodoList = ({tasks,handelDel}) => {
     return(
-        <ul>
+        <ul className="task-add">
         {tasks.map((task,index)=>(
-            <li key={index}>{task}
-            <button onClick={()=>handelDel(index)}>Delete</button>
-            </li>
+            <li key={index}>{task} 
+            <button type="submit" onClick={handelDel}>Delete</button></li>
         ))}
         </ul>
     )

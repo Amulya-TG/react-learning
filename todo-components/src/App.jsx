@@ -16,7 +16,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <TodoInput input={input}
       setInput={setInput}
       handelAdd={handelAdd}
