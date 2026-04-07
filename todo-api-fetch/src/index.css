@@ -1,0 +1,7 @@
+.todo-list{
+     text-align:left;
+}
+
+.tbl tr,th,td{
+    border: 1px solid black;
+}
