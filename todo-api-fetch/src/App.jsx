@@ -1,42 +1,70 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Complete from "./components/Complete";
 
-const TodoFetch = () => {
+function App() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [input, setInput] = useState("");
+  const [adding, setAdding] = useState(false);
 
   useEffect(() => {
-    const fetchTodo = async () => {
+    const fetchTodos = async () => {
       try {
         const res = await fetch("https://jsonplaceholder.typicode.com/todos");
         const data = await res.json();
         setTodos(data.slice(0, 10));
-        console.log(data.slice(0, 10));
       } catch (error) {
-        console.error("Something went wrong", error);
+        console.error("Error fetching todos", error);
+      } finally {
+        setLoading(false);
       }
     };
-    setLoading(true);
-    fetchTodo();
-    setLoading(false);
+    fetchTodos();
   }, []);
-  return (
-    <>
-      {loading ? (
-        <p>loading....</p>
-      ) : (
-        <div className="todo-list">
-          <h1>Todos List</h1>
-          <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>{todo.title}</li>
-          ))}
-          </ul>
-          <Complete todos={todos} />
-        </div>
-      )}
-    </>
-  );
-};
 
-export default TodoFetch;
+  const handleAdd = async () => {
+    if (!input) return;
+    const newTodo = {
+      title: input,
+      completed: false,
+    };
+    try {
+      setAdding(true);
+      const res = await fetch("https://jsonplaceholder.typicode.com/todos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTodo),
+      });
+      const data = await res.json();
+      setTodos((prev) => [data, ...prev]);
+      setInput("");
+    } catch (error) {
+      console.error("Error adding todo", error);
+    } finally {
+      setAdding(false);
+    }
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Todo App (API)</h1>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Enter todo"
+      />
+      <button onClick={handleAdd} disabled={adding}>
+        {adding ? "Adding..." : "Add"}
+      </button>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Complete todos={todos} />
+      )}
+    </div>
+  );
+}
+
+export default App;

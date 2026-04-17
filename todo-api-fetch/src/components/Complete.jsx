@@ -1,33 +1,35 @@
 function Complete({ todos }) {
   const completedTodos = todos.filter((todo) => todo.completed);
   const incompletedTodos = todos.filter((todo) => !todo.completed);
+
   return (
-    <div className="tbl">
-      <table>
+    <div>
+      <h2>Todos</h2>
+      <table border="1" cellPadding="10">
         <thead>
-        <tr>
-          <th>Completed todo</th>
-          <th>InCompleted todo</th>
-        </tr>
+          <tr>
+            <th>Completed</th>
+            <th>Incomplete</th>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>
-            <ul>
-              {completedTodos.map((todo) => (
-                <li key={todo.id}>{todo.title}</li>
-              ))}
-            </ul>
-          </td>
-          <td>
-            <ul>
-              {incompletedTodos.map((todo) => (
-                <li key={todo.id}>{todo.title}</li>
-              ))}
-            </ul>
-          </td>
-        </tr>
-        </tbody> 
+          <tr>
+            <td>
+              <ul>
+                {completedTodos.map((todo) => (
+                  <li key={todo.id}>{todo.title}</li>
+                ))}
+              </ul>
+            </td>
+            <td>
+              <ul>
+                {incompletedTodos.map((todo) => (
+                  <li key={todo.id}>{todo.title}</li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
