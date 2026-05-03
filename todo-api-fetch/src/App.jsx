@@ -7,8 +7,7 @@ function App() {
   const [input, setInput] = useState("");
   const [adding, setAdding] = useState(false);
 
-  useEffect(() => {
-    const fetchTodos = async () => {
+  const fetchTodos = async () => {
       try {
         const res = await fetch("https://jsonplaceholder.typicode.com/todos");
         const data = await res.json();
@@ -19,6 +18,7 @@ function App() {
         setLoading(false);
       }
     };
+  useEffect(() => {  
     fetchTodos();
   }, []);
 
