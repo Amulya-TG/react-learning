@@ -51,11 +51,12 @@ function App() {
     <div style={{ padding: "20px" }}>
       <h1>Todo App (API)</h1>
       <input
+      className="todo-input"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter todo"
       />
-      <button onClick={handleAdd} disabled={adding}>
+      <button onClick={handleAdd} disabled={adding} className="todo-btn">
         {adding ? "Adding..." : "Add"}
       </button>
       {loading ? (

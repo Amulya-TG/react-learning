@@ -1,7 +1,20 @@
 .todo-list{
-     text-align:left;
+    text-align:right;
 }
 
 .tbl tr,th,td{
     border: 1px solid black;
+}
+
+.todo-input{
+    padding: 8px;
+    width: 150px;
+    border: 1px solid black;
+}
+
+.todo-btn{
+    margin: 5px;
+    padding: 8px;
+    width: 50px;
+    border: none;
 }
