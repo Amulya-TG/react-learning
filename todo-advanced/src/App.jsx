@@ -29,13 +29,19 @@ const App = () =>{
     setTodos([...todos,newTodo])
   }
 
+  function handelDel(id){
+    const newTodo = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodo);
+  }
+
   return(
   <>
     <h1>Creating Advanced Todo</h1>
     <div>
       <ul>
         {todos.map((todo)=>(
-          <li key={todo.id}>{todo.title}</li>
+          <li key={todo.id}>{todo.title}
+          <button onClick={()=>handelDel(todo.id)}>delete</button></li>
         ))}
       </ul>
     </div>
