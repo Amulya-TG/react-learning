@@ -1,16 +1,34 @@
-# React + Vite
+A React-based todo application that fetches initial data from an API and allows users to manage tasks dynamically.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Features
+- Fetch todos from external API
+- Display todo list
+- Add new todos
+- Delete existing todos
 
-Currently, two official plugins are available:
+## 🧠 Concepts Used
+- useState (state management)
+- useEffect (API calls)
+- Async/Await (data fetching)
+- Event handling
+- Conditional rendering
+- Array methods (map, filter)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🔧 Tech Stack
+- React (Vite)
+- JavaScript (ES6+)
 
-## React Compiler
+## 📡 API Used
+- https://jsonplaceholder.typicode.com/todos?_limit=5
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Project Structure
+- App.jsx → Main logic (state + functions)
 
-## Expanding the ESLint configuration
+## 🎯 Purpose
+Built to practice real-world React concepts like API integration, state updates, and user interactions in a single application.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💡 Future Improvements
+- Edit todo
+- Persistent storage (localStorage / backend)
+- Better UI styling
+- Filter (completed / pending)
