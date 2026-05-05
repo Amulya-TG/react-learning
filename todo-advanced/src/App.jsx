@@ -35,9 +35,9 @@ const App = () =>{
   }
 
   return(
-  <>
+  <div className="container">
     <h1>Creating Advanced Todo</h1>
-    <div>
+    <div className="todo-list">
       <ul>
         {todos.map((todo)=>(
           <li key={todo.id}>{todo.title}
@@ -45,14 +45,14 @@ const App = () =>{
         ))}
       </ul>
     </div>
-    <div>
+    <div className="todo-fun">
       <h2>Add New Todo</h2>
       <input type="text" 
       value={input}
       onChange={(e)=> setInput(e.target.value)}/>
       <button onClick={handelSubmit}>Add</button>
     </div>
-  </>
+  </div>
   )
 }
 
