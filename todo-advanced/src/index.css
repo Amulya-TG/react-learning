@@ -6,7 +6,43 @@
 
 .container{
     margin: 30px;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: brown;
+}
+
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todo-list li{
+    display: flex;
+    gap: 20px;
+    margin: 8px;
+    padding: 8px;
+    background-color: darkgoldenrod;
+    justify-content: space-between;
+}
+
+.todo-fun{
+    display: flex;
+}
+
+.todo-fun input{
+    width: 40vw;
+    border: 1px solid darkgoldenrod;
+    margin: 8px;
+    padding: 8px;
+}
+
+.todo-fun button{
+    width: 40vw;
+    border: 1px solid darkgoldenrod;
+    background-color: darkgoldenrod;
+    margin: 8px;
+    padding: 8px;
 }
