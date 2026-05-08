@@ -1,4 +1,4 @@
-const CompletedTodos =({todos,toggleTodo}) =>{
+const CompletedTodos =({todos,toggleTodo,handelDel}) =>{
     const completedTodos = todos.filter((todo)=>todo.completed);
     return(
         <>
@@ -6,6 +6,7 @@ const CompletedTodos =({todos,toggleTodo}) =>{
         <ul>
             {completedTodos.map((todo)=>(
             <li key={todo.id}>{todo.title}
+            <button onClick={()=>handelDel(todo.id)}>Delete</button>
             <button onClick={()=>toggleTodo(todo.id)}>Incomplete</button></li>
             ))}
         </ul>

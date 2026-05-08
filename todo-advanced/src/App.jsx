@@ -46,7 +46,8 @@ const App = () =>{
     <div className="todo-list">
       <CompletedTodos 
         todos={todos}
-        toggleTodo={toggleTodo}/>
+        toggleTodo={toggleTodo}
+        handelDel={handelDel}/>
     </div>
     <h2>Add New Todo</h2>
     <div className="todo-fun">
@@ -55,7 +56,7 @@ const App = () =>{
       onChange={(e)=> setInput(e.target.value)}/>
       <button onClick={handelSubmit}>Add</button>
     </div>
-    <div>
+    <div className="todo-list">
       <IncompletedTodos
         todos={todos}
         toggleTodo={toggleTodo}
