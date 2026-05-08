@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CompletedTodos from "./components/CompletedTodos";
+import IncompletedTodos from "./components/IncompletedTodos";
 
 const App = () =>{
   const[todos,setTodos]=useState([]);
@@ -53,6 +54,12 @@ const App = () =>{
       value={input}
       onChange={(e)=> setInput(e.target.value)}/>
       <button onClick={handelSubmit}>Add</button>
+    </div>
+    <div>
+      <IncompletedTodos
+        todos={todos}
+        toggleTodo={toggleTodo}
+      />
     </div>
   </div>
   )
