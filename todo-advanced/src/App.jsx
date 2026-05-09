@@ -2,68 +2,74 @@ import React, { useEffect, useState } from "react";
 import CompletedTodos from "./components/CompletedTodos";
 import IncompletedTodos from "./components/IncompletedTodos";
 
-const App = () =>{
-  const[todos,setTodos]=useState([]);
-  const[loading,setLoading]=useState(true);
-  const[input,setInput]=useState("")
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [input, setInput] = useState("");
 
-  const fetchApi = async() =>{
-    try{
+  const fetchApi = async () => {
+    try {
       const res = await fetch("https://jsonplaceholder.typicode.com/todos");
       const data = await res.json();
-      setTodos(data.slice(0,10));
-    }catch{
-      console.error("Error:",err); 
-    }finally{
+      setTodos(data.slice(0, 10));
+    } catch {
+      console.error("Error:", err);
+    } finally {
       setLoading(false);
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     fetchApi();
-  },[])
-  
-  function handelSubmit(){
+  }, []);
+
+  function handelSubmit() {
     if (!input) return;
     const newTodo = {
-      id : Date.now(),
-      title : input,
-      completed : false,
-    }
-    setTodos([...todos,newTodo])
+      id: Date.now(),
+      title: input,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
   }
 
-  function toggleTodo(id){
-    setTodos(todos.map((todo)=>todo.id===id?{...todo,completed:!todo.completed}:todo));
+  function toggleTodo(id) {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
+    );
   }
 
-  function handelDel(id){
+  function handelDel(id) {
     const newTodo = todos.filter((todo) => todo.id !== id);
     setTodos(newTodo);
   }
 
-  return(
-  <div className="container">
-    <div className="todo-list">
-      <CompletedTodos 
-        todos={todos}
-        toggleTodo={toggleTodo}
-        handelDel={handelDel}/>
+  return (
+    <div className="container">
+      <div className="todo-left">
+        <div className="todo-list">
+          <CompletedTodos
+            todos={todos}
+            toggleTodo={toggleTodo}
+            handelDel={handelDel}
+          />
+        </div>
+        <div className="todo-fun">
+          <h2>Add New Todo</h2>
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button onClick={handelSubmit}>Add</button>
+        </div>
+      </div>
+      <div className="todo-list todo-right">
+        <IncompletedTodos todos={todos} toggleTodo={toggleTodo} />
+      </div>
     </div>
-    <div className="todo-list">
-      <IncompletedTodos
-        todos={todos}
-        toggleTodo={toggleTodo}
-        />
-    </div>
-    <h2>Add New Todo</h2>
-    <div className="todo-fun">
-      <input type="text" 
-      value={input}
-      onChange={(e)=> setInput(e.target.value)}/>
-      <button onClick={handelSubmit}>Add</button>
-    </div>
-  </div>
-  )
-}
+  );
+};
 
 export default App;
