@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CompletedTodos from "./components/CompletedTodos";
-import IncompletedTodos from "./components/IncompletedTodos";
+import SearchBar from "./components/SearchBar";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [input, setInput] = useState("");
-  const [editId, setEditId] = useState(null);
-  const [editText, setEditText] = useState("");
+  const [search, setSearch] = useState("");
+  const[filter,setFilter] = useState("all")
 
   const fetchApi = async () => {
     try {
@@ -24,11 +24,10 @@ const App = () => {
     fetchApi();
   }, []);
 
-  function handelSubmit() {
-    if (!input) return;
+  function addTodo(text) {
     const newTodo = {
       id: Date.now(),
-      title: input,
+      title: text,
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -47,12 +46,7 @@ const App = () => {
     setTodos(newTodo);
   }
 
-  function handelEdit(todo) {
-    setEditId(todo.id);
-    setEditText(todo.title);
-  }
-
-  function handelUpdate() {
+  function handelEdit(id, newText) {
     setTodos(
       todos.map((todo) =>
         todo.id === editId ? { ...todo, title: editText } : todo,
@@ -60,41 +54,43 @@ const App = () => {
     );
   }
 
+  const filteredTodos = todos.filter((todo) => {
+    const matcheSearch = todo.title.toLowerCase()
+      .includes(search.toLowerCase());
+
+    if(filter === "completed"){
+      return matcheSearch && todo.completed
+    };
+
+    if(filter === "incomplete"){
+      return matcheSearch && !todo.completed
+    }
+    return matcheSearch
+  });
+
+  const incompleteTodos = filteredTodos.filter((todo) => !todo.completed);
+  const completeTodos = filteredTodos.filter((todo) => todo.completed);
+
   return (
     <div className="container">
-      <div className="todo-left">
-        <div className="todo-list">
-          <CompletedTodos
-            todos={todos}
-            toggleTodo={toggleTodo}
-            handelDel={handelDel}
-            handelEdit={handelEdit}
-          />
-        </div>
-        <div className="todo-fun">
-          <h2>Add New Todo</h2>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button onClick={handelSubmit}>Add</button>
+      <TodoInput addTodo={addTodo} />
+      <SearchBar search={search} setSearch={setSearch} />
 
-          {editId && (
-            <div className="todo-fun">
-              <input
-                type="text"
-                value={editText}
-                onChange={(e) => setEditText(e.target.value)}
-              />
-              <button onClick={handelUpdate}>Update</button>
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="todo-list todo-right">
-        <IncompletedTodos todos={todos} toggleTodo={toggleTodo} />
-      </div>
+      <h2>Incompleted Todos</h2>
+      <TodoList
+        todos={incompleteTodos}
+        toggleTodo={toggleTodo}
+        handelDel={handelDel}
+        handelEdit={handelEdit}
+      />
+
+      <h2>Completed Todos</h2>
+      <TodoList
+        todos={completeTodos}
+        toggleTodo={toggleTodo}
+        handelDel={handelDel}
+        handelEdit={handelEdit}
+      />
     </div>
   );
 };
