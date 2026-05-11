@@ -4,7 +4,9 @@ A React-based todo application that fetches initial data from an API and allows 
 - Fetch todos from external API
 - Display todo list
 - Add new todos
+- Edit existing todos
 - Delete existing todos
+- saved todos in localstorage
 
 ## 🧠 Concepts Used
 - useState (state management)
@@ -28,7 +30,4 @@ A React-based todo application that fetches initial data from an API and allows 
 Built to practice real-world React concepts like API integration, state updates, and user interactions in a single application.
 
 ## 💡 Future Improvements
-- Edit todo
-- Persistent storage (localStorage / backend)
 - Better UI styling
-- Filter (completed / pending)
