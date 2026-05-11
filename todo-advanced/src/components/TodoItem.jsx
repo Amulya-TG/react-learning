@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const TodoItem = ({ todo, toggleTodo, handelDel, handelEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [newText, setNewText] = useState(todo.text);
+  const [newText, setNewText] = useState(todo.title);
   function handelSave(){
     handelEdit(todo.id,newText);
     setIsEditing(false);

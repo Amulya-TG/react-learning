@@ -9,6 +9,7 @@ const TodoInput = ({ addTodo }) => {
   }
   return (
     <div className="input-box">
+      <h2>Add Todo</h2>
       <input
         type="text"
         value={input}
