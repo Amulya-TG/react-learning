@@ -21,13 +21,10 @@ A React-based todo application that fetches initial data from an API and allows 
 - JavaScript (ES6+)
 
 ## 📡 API Used
-- https://jsonplaceholder.typicode.com/todos?_limit=5
+- https://jsonplaceholder.typicode.com/todos
 
 ## 📂 Project Structure
 - App.jsx → Main logic (state + functions)
 
 ## 🎯 Purpose
 Built to practice real-world React concepts like API integration, state updates, and user interactions in a single application.
-
-## 💡 Future Improvements
-- Better UI styling
