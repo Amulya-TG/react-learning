@@ -4,13 +4,25 @@ import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 
 const App = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const[filter,setFilter] = useState("all")
+  const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const fetchApi = async () => {
     try {
+      const savedTodos = localStorage.getItem("todos");
+      if (savedTodos) {
+        setLoading(false);
+        return;
+      }
       const res = await fetch("https://jsonplaceholder.typicode.com/todos");
       const data = await res.json();
       setTodos(data.slice(0, 10));
@@ -49,23 +61,24 @@ const App = () => {
   function handelEdit(id, newText) {
     setTodos(
       todos.map((todo) =>
-        todo.id === editId ? { ...todo, title: editText } : todo,
+        todo.id === id ? { ...todo, title: newText } : todo,
       ),
     );
   }
 
   const filteredTodos = todos.filter((todo) => {
-    const matcheSearch = todo.title.toLowerCase()
+    const matcheSearch = todo.title
+      .toLowerCase()
       .includes(search.toLowerCase());
 
-    if(filter === "completed"){
-      return matcheSearch && todo.completed
-    };
-
-    if(filter === "incomplete"){
-      return matcheSearch && !todo.completed
+    if (filter === "completed") {
+      return matcheSearch && todo.completed;
     }
-    return matcheSearch
+
+    if (filter === "incomplete") {
+      return matcheSearch && !todo.completed;
+    }
+    return matcheSearch;
   });
 
   const incompleteTodos = filteredTodos.filter((todo) => !todo.completed);
@@ -73,24 +86,26 @@ const App = () => {
 
   return (
     <div className="container">
-      <TodoInput addTodo={addTodo} />
-      <SearchBar search={search} setSearch={setSearch} />
-
-      <h2>Incompleted Todos</h2>
-      <TodoList
-        todos={incompleteTodos}
-        toggleTodo={toggleTodo}
-        handelDel={handelDel}
-        handelEdit={handelEdit}
-      />
-
-      <h2>Completed Todos</h2>
-      <TodoList
-        todos={completeTodos}
-        toggleTodo={toggleTodo}
-        handelDel={handelDel}
-        handelEdit={handelEdit}
-      />
+      <div className="todo-left">
+        <SearchBar search={search} setSearch={setSearch} />
+        <h2>Completed Todos</h2>
+        <TodoList
+          todos={completeTodos}
+          toggleTodo={toggleTodo}
+          handelDel={handelDel}
+          handelEdit={handelEdit}
+        />
+        <TodoInput addTodo={addTodo} />
+      </div>
+      <div className="todo-right">
+        <h2>Incompleted Todos</h2>
+        <TodoList
+          todos={incompleteTodos}
+          toggleTodo={toggleTodo}
+          handelDel={handelDel}
+          handelEdit={handelEdit}
+        />
+      </div>
     </div>
   );
 };
