@@ -1,71 +1,79 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.container{
-    display: flex;
+body{
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
-.todo-left{
-    margin: 30px;
-    height: 80vh;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: brown;
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 20px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.input-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 10px;
+}
+
+.search {
+  display: flex;
+  justify-self: center;
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-item {
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.btns {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 12px;
 }
 
 .todo-right{
-    margin: auto 30px;
-    height: 80vh;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   
-    align-items: center;  
-    color: brown;
+  margin: auto 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.todo-list{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.todo-list li{
-    display: flex;
-    gap: 20px;
-    margin: 8px;
-    padding: 8px;
-    background-color: darkgoldenrod;
-    justify-content: space-between;
-}
-
-.todo-btn{
-    display: flex;
-    gap: 5px;
-}
-
-.todo-fun{
-    display: flex;
-    flex-direction: column;
-}
-
-.todo-fun input{
-    width: 100%;
-    border: 1px solid darkgoldenrod;
-    margin: 8px;
-    padding: 8px;
-}
-
-.todo-fun button{
-    width: 80%;
-    align-self: center;
-    border: 1px solid darkgoldenrod;
-    background-color: darkgoldenrod;
-    margin: 8px;
-    padding: 8px;
+.todo-left{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
