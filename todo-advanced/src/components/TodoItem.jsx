@@ -3,8 +3,8 @@ import { useState } from "react";
 const TodoItem = ({ todo, toggleTodo, handelDel, handelEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState(todo.title);
-  function handelSave(){
-    handelEdit(todo.id,newText);
+  function handelSave() {
+    handelEdit(todo.id, newText);
     setIsEditing(false);
   }
 
@@ -26,8 +26,8 @@ const TodoItem = ({ todo, toggleTodo, handelDel, handelEdit }) => {
             <button onClick={() => toggleTodo(todo.id)}>
               {todo.completed ? "mark Incomplete" : "Mark Complete"}
             </button>
-            <button onClick={()=>setIsEditing(true)}>Edit</button>
-            <button onClick={()=>handelDel(todo.id)}>Delete</button>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <button onClick={() => handelDel(todo.id)}>Delete</button>
           </div>
         </>
       )}
