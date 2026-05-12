@@ -80,6 +80,10 @@ const App = () => {
     }
     return matcheSearch;
   });
+  
+  const totalCount = todos.length;
+  const completedTodos = todos.filter((todo) => todo.completed).length;
+  const remainingTodos = todos.filter((todo) => !todo.completed).length;
 
   const incompleteTodos = filteredTodos.filter((todo) => !todo.completed);
   const completeTodos = filteredTodos.filter((todo) => todo.completed);
@@ -98,6 +102,11 @@ const App = () => {
         <TodoInput addTodo={addTodo} />
       </div>
       <div className="todo-right">
+        <div>
+          <h4>Total : {totalCount}</h4>
+          <h4>Completed Todos : {completedTodos}</h4>
+          <h4>Remaining Todos : {remainingTodos}</h4>
+        </div>
         <h2>Incompleted Todos</h2>
         <TodoList
           todos={incompleteTodos}
