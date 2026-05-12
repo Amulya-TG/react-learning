@@ -67,10 +67,13 @@ button {
 }
 
 .todo-right{
-  margin: auto 5px;
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+.count{
+  position: static;
 }
 
 .todo-left{

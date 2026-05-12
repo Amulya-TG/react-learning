@@ -102,7 +102,7 @@ const App = () => {
         <TodoInput addTodo={addTodo} />
       </div>
       <div className="todo-right">
-        <div>
+        <div className="count">
           <h4>Total : {totalCount}</h4>
           <h4>Completed Todos : {completedTodos}</h4>
           <h4>Remaining Todos : {remainingTodos}</h4>
