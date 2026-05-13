@@ -12,6 +12,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+  const [priority,setPriority] = useState("Medium");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -42,6 +43,7 @@ const App = () => {
       id: Date.now(),
       title: text,
       completed: false,
+      priority : priority,
     };
     setTodos([...todos, newTodo]);
   }
@@ -100,7 +102,7 @@ const App = () => {
           handelDel={handelDel}
           handelEdit={handelEdit}
         />
-        <TodoInput addTodo={addTodo} />
+        <TodoInput addTodo={addTodo} priority={priority} setPriority={setPriority}/>
       </div>
       <div className="todo-right">
         <Todostats 

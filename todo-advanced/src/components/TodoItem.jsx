@@ -21,7 +21,7 @@ const TodoItem = ({ todo, toggleTodo, handelDel, handelEdit }) => {
         </>
       ) : (
         <>
-          <span>{todo.title}</span>
+          <span>{todo.title} - {todo.priority}</span>
           <div className="btns">
             <button onClick={() => toggleTodo(todo.id)}>
               {todo.completed ? "mark Incomplete" : "Mark Complete"}

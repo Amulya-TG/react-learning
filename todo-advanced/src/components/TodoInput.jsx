@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TodoInput = ({ addTodo }) => {
+const TodoInput = ({ addTodo,priority,setPriority}) => {
   const [input, setInput] = useState("");
   function handelAdd() {
     if (!input) return;
@@ -15,6 +15,11 @@ const TodoInput = ({ addTodo }) => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
+      <select value={priority} onChange={(e)=>setPriority(e.target.value)}>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
       <button onClick={handelAdd}>Add</button>
     </div>
   );
