@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import Todostats from "./components/TodoStats";
 
 const App = () => {
   const [todos, setTodos] = useState(() => {
@@ -102,11 +103,11 @@ const App = () => {
         <TodoInput addTodo={addTodo} />
       </div>
       <div className="todo-right">
-        <div className="count">
-          <h4>Total : {totalCount}</h4>
-          <h4>Completed Todos : {completedTodos}</h4>
-          <h4>Remaining Todos : {remainingTodos}</h4>
-        </div>
+        <Todostats 
+          totalCount = {totalCount}
+          completedTodos = {completedTodos}
+          remainingTodos = {remainingTodos}
+        />
         <h2>Incompleted Todos</h2>
         <TodoList
           todos={incompleteTodos}
