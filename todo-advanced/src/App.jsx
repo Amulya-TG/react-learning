@@ -61,10 +61,10 @@ const App = () => {
     setTodos(newTodo);
   }
 
-  function handelEdit(id, newText) {
+  function handelEdit(id, newText,editPriority) {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, title: newText } : todo,
+        todo.id === id ? { ...todo, title: newText, priority:editPriority } : todo,
       ),
     );
   }
